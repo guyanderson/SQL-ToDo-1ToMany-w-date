@@ -101,7 +101,8 @@ namespace ToDo
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM categories;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM categories; DELETE FROM tasks;", conn);
+
       cmd.ExecuteNonQuery();
       conn.Close();
     }

@@ -6,7 +6,8 @@ using System.Data.SqlClient;
 
 namespace ToDo
 {
-  public class ToDoTest : IDisposable
+  public class ToDoTest
+  //: IDisposable
   {
     public ToDoTest()
     {
@@ -74,17 +75,16 @@ namespace ToDo
 
       Task foundTask = Task.Find(testTask.GetId());
 
-      Console.WriteLine($"description: {testTask.GetDescription()}, ID: {testTask.GetId()}, catId: {testTask.GetCategoryId()}");
-      Console.WriteLine($"description: {foundTask.GetDescription()}, ID: {foundTask.GetId()}, catId: {testTask.GetCategoryId()}");
+      // Console.WriteLine($"description: {testTask.GetDescription()}, ID: {testTask.GetId()}, catId: {testTask.GetCategoryId()}");
+      // Console.WriteLine($"description: {foundTask.GetDescription()}, ID: {foundTask.GetId()}, catId: {foundTask.GetCategoryId()}");
       Assert.Equal(testTask, foundTask);
     }
 
     public void Dispose()
     {
       Task.DeleteAll();
-      Category.DeleteAll();
-      Console.WriteLine(Task.GetAll().Count);
-      Console.WriteLine(Category.GetAll().Count);
+      // Console.WriteLine(Task.GetAll().Count);
+      // Console.WriteLine(Category.GetAll().Count);
     }
   }
 }

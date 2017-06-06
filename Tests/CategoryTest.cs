@@ -51,7 +51,7 @@ namespace ToDo
     [Fact]
     public void Test_Save_AssignsIdToCategoryObject()
     {
-      Category testCategory = new Category("Cleaning");
+      Category testCategory = new Category("Shopping");
       testCategory.Save();
 
       Category savedCategory = Category.GetAll()[0];
@@ -88,14 +88,15 @@ namespace ToDo
       List<Task> resultTaskList = testCategory.GetTasks();
 
       Assert.Equal(testTaskList, resultTaskList);
+
     }
 
     public void Dispose()
     {
-      Task.DeleteAll();
+      Console.WriteLine("categories");
       Category.DeleteAll();
-      Console.WriteLine(Task.GetAll().Count);
-      Console.WriteLine(Category.GetAll().Count);
+      // Console.WriteLine(Task.GetAll().Count);
+      // Console.WriteLine(Category.GetAll().Count);
 
     }
   }
