@@ -91,6 +91,48 @@ namespace ToDo
 
     }
 
+    [Fact]
+    public void Test_Update_UpdatesCategoryInDatabase()
+    {
+      string name = "Home stuff";
+      Category testCategory = new Category(name);
+      testCategory.Save();
+      string newName = "Work stuff";
+
+      testCategory.Update(newName);
+
+      string result = testCategory.GetName();
+
+      Assert.Equal(newName, result);
+    }
+
+    [Fact]
+    public void Test_Delete_DeletesCategoryFromDatabase()
+    {
+      string name1 = "Home stuff";
+      Category testCategory1 = new Category(name1);
+      testCategory1.Save();
+
+      string name2 = "Work stuff";
+      Category testCategory2 = new Category(name2);
+      testCategory2.Save();
+
+      Task testTask1 = new Task("mow the lawn", testCategory1.GetId());
+      testTask1.Save();
+      Task testTask2 = new Task("wash the dishes", testCategory2.GetId());
+      testTask2.Save();
+
+      testCategory1.Delete();
+      List<Category> resultCategories = Category.GetAll();
+      List<Category> testCategoryList = new List<Category> {testCategory2};
+
+      List<Task> resultTasks = Task.GetAll();
+      List<Task> testTaskList = new List<Task> {testTask2};
+
+      Assert.Equal(testCategoryList, resultCategories);
+      Assert.Equal(testTaskList, resultTasks);
+    }
+
     public void Dispose()
     {
       Console.WriteLine("categories");

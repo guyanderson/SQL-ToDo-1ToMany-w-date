@@ -6,8 +6,7 @@ using System.Data.SqlClient;
 
 namespace ToDo
 {
-  public class ToDoTest
-  //: IDisposable
+  public class ToDoTest : IDisposable
   {
     public ToDoTest()
     {
