@@ -27,8 +27,8 @@ namespace ToDo
     public void Test_Equal_ReturnsTrueIfDescriptionsAreTheSame()
     {
       //Arrange, Act
-      Task firstTask = new Task("Mow the lawn");
-      Task secondTask = new Task("Mow the lawn");
+      Task firstTask = new Task("Mow the lawn", 1);
+      Task secondTask = new Task("Mow the lawn", 1);
 
       //Assert
       Assert.Equal(firstTask, secondTask);
@@ -38,7 +38,7 @@ namespace ToDo
     public void Test_Save_SavesToDatabase()
     {
       //Arrange
-      Task testTask = new Task("Mow the lawn");
+      Task testTask = new Task("Mow the lawn", 1);
 
       //Act
       testTask.Save();
@@ -53,7 +53,7 @@ namespace ToDo
     public void Test_Save_AssignsIdToObject()
     {
       //Arrange
-      Task testTask = new Task("Mow the lawn");
+      Task testTask = new Task("Mow the lawn", 1);
 
       //Act
       testTask.Save();
@@ -69,20 +69,22 @@ namespace ToDo
     [Fact]
     public void Test_Find_FindsTaskInDatabase()
     {
-      //Arrange
-      Task testTask = new Task("Mow the lawn");
+      Task testTask = new Task("Do the dishes", 1);
       testTask.Save();
 
-      //Act
       Task foundTask = Task.Find(testTask.GetId());
 
-      //Assert
+      Console.WriteLine($"description: {testTask.GetDescription()}, ID: {testTask.GetId()}, catId: {testTask.GetCategoryId()}");
+      Console.WriteLine($"description: {foundTask.GetDescription()}, ID: {foundTask.GetId()}, catId: {testTask.GetCategoryId()}");
       Assert.Equal(testTask, foundTask);
     }
 
     public void Dispose()
     {
       Task.DeleteAll();
+      Category.DeleteAll();
+      Console.WriteLine(Task.GetAll().Count);
+      Console.WriteLine(Category.GetAll().Count);
     }
   }
 }
