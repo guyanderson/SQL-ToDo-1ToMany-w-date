@@ -48,19 +48,19 @@ namespace ToDo
       Assert.Equal(testList, result);
     }
 
-    [Fact]
-    public void Test_Save_AssignsIdToCategoryObject()
-    {
-      Category testCategory = new Category("Shopping");
-      testCategory.Save();
-
-      Category savedCategory = Category.GetAll()[0];
-
-      int result = savedCategory.GetId();
-      int testId = testCategory.GetId();
-
-      Assert.Equal(testId, result);
-    }
+    // [Fact]
+    // public void Test_Save_AssignsIdToCategoryObject()
+    // {
+    //   Category testCategory = new Category("Shopping");
+    //   testCategory.Save();
+    //
+    //   Category savedCategory = Category.GetAll()[0];
+    //
+    //   int result = savedCategory.GetId();
+    //   int testId = testCategory.GetId();
+    //
+    //   Assert.Equal(testId, result);
+    // }
 
     [Fact]
     public void Test_Find_FindsCategoryInDatabase()
@@ -79,9 +79,9 @@ namespace ToDo
       Category testCategory = new Category("Cleaning");
       testCategory.Save();
 
-      Task firstTask = new Task("Take out the trash", testCategory.GetId());
+      Task firstTask = new Task("Take out the trash", testCategory.GetId(), "1/2/17");
       firstTask.Save();
-      Task secondTask = new Task("Mop the floor", testCategory.GetId());
+      Task secondTask = new Task("Mop the floor", testCategory.GetId(), "1/2/17");
       secondTask.Save();
 
       List<Task> testTaskList = new List<Task>{firstTask, secondTask};
@@ -117,9 +117,9 @@ namespace ToDo
       Category testCategory2 = new Category(name2);
       testCategory2.Save();
 
-      Task testTask1 = new Task("mow the lawn", testCategory1.GetId());
+      Task testTask1 = new Task("mow the lawn", testCategory1.GetId(), "1/2/17");
       testTask1.Save();
-      Task testTask2 = new Task("wash the dishes", testCategory2.GetId());
+      Task testTask2 = new Task("wash the dishes", testCategory2.GetId(), "1/2/17");
       testTask2.Save();
 
       testCategory1.Delete();
@@ -137,6 +137,7 @@ namespace ToDo
     {
       Console.WriteLine("categories");
       Category.DeleteAll();
+      Task.DeleteAll();
       // Console.WriteLine(Task.GetAll().Count);
       // Console.WriteLine(Category.GetAll().Count);
 
