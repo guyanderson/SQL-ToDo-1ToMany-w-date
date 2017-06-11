@@ -152,11 +152,11 @@ namespace ToDo
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Task> tasks = new List<Task> {};
+      List<Task> tasks = new List<Task>{};
       while(rdr.Read())
       {
         int taskId = rdr.GetInt32(0);
-        string taskDescription= rdr.GetString(1);
+        string taskDescription = rdr.GetString(1);
         int taskCategoryId = rdr.GetInt32(2);
         string taskDueDate = rdr.GetString(3);
         Task newTask = new Task(taskDescription, taskCategoryId, taskDueDate, taskId);

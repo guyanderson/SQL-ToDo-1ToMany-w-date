@@ -82,6 +82,7 @@ namespace ToDo
     public void Dispose()
     {
       Task.DeleteAll();
+      Category.DeleteAll();
       // Console.WriteLine(Task.GetAll().Count);
       // Console.WriteLine(Category.GetAll().Count);
     }
